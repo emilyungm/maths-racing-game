@@ -1,0 +1,36 @@
+body {
+    font-family: "Montserrat", sans-serif;
+    text-align: center;
+    font-size: large;
+    background-image: url("./images/background.jpeg");
+    background-size: cover;
+}
+
+button {
+    background-color: rgb(246, 148, 248);
+    color: white;
+    font-size: 30px;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 200px;
+    height: 80px;
+    border-radius: 16px;
+}
+
+#info {
+    width: 80%;
+    background-color: rgba(86, 247, 247, 0.594);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    padding-top: 1%;
+    padding-bottom: 1%;
+    border-radius: 25px;
+    border-color: rgb(214, 214, 214);
+    border-width: 4px;
+    border-style: solid;    
+}
