@@ -15,11 +15,13 @@ button {
     border: none;
     cursor: pointer;
     width: 200px;
-    height: 80px;
+    height: 70px;
     border-radius: 16px;
+    border-color: rgb(228, 228, 228);
+
 }
 
-#info {
+#loadInfo, #gameOver {
     width: 80%;
     background-color: rgba(86, 247, 247, 0.594);
     position: absolute;
@@ -30,7 +32,56 @@ button {
     padding-top: 1%;
     padding-bottom: 1%;
     border-radius: 25px;
-    border-color: rgb(214, 214, 214);
-    border-width: 4px;
-    border-style: solid;    
+    box-shadow: 0 0 10px 5px rgba(116, 116, 116, 0.5);
 }
+
+#gameStats {
+    padding-top: 2%;
+}
+
+#track {
+    background-image: url("./images/racetrack.jpg");
+    background-size: cover;
+    height: 189px;
+    width: 1000px;
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+
+    /* split into more divs */
+    display: flex;
+    flex-wrap: wrap;
+} 
+
+#track div {
+    height: 189px;
+    width: 90px;
+} 
+
+#track div img {
+    height: 95px;
+    width: 95px;
+    margin-top: 50%;
+} 
+
+#questionBox {
+    width: 60%;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(6, 129, 129, 0.82);
+    border-radius: 20px;
+    border: 2px solid grey;
+    color: white;
+    padding-bottom: 2%;
+}
+
+#answer {
+    font-size: large;
+    text-align: center;
+}
+

@@ -13,15 +13,27 @@
     <body>
         <title>Maths Racer</title>
 
-        <div id="info">
+        <div id="loadInfo">
             <h1>Maths Racer!</h1>
             <h2>Answer the problems as quickly as possible to reach the finish line</h2>
-            <button id="start">Start Game</button>
+            <button id="startBtn">Start Game</button>
         </div>
-        <div id="game-stats">
-            <!-- <h3 id="progress">Progress: 1000m to go!</h3>
-            <h3 id="accuracy">Accuracy:</h3> -->
+
+        <div id="gameStats">
+            <h3 id="progress">Progress: 1000m to go!</h3>
         </div>
-        <div id="track"></div>
+
+        <div id="questionBox">
+            <h1 id="questionText"></h1>
+            <input type="text" id="answer" autocomplete="off">
+        </div>
+
+        <div id="track">
+        </div>
+
+        <div id="gameOver">
+            <h1>Game Over!</h1>
+            <h2 id="accuracy">Your accuracy was:</h2>
+            <button id="restartBtn">Restart</button>
     </body>
 </html>
