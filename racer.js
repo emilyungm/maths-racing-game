@@ -11,6 +11,7 @@ let numQuestions;
 let numCorrect;
 let difficultySelect;
 let difficultyMode = "easy";    // default difficulty mode
+let questionTimer;
 
 window.onload = function() {
     stats = document.getElementById("gameStats");
@@ -71,7 +72,16 @@ function onStart() {
     generateQuestion();
 }
 
+function onTimeOut() {
+    generateQuestion();
+}
+
+function startQuestionTimer(limit) {
+    questionTimer = setTimeout(onTimeOut, limit);
+}
+
 function generateQuestion() {
+    clearTimeout(questionTimer); 
 
     if (currentPos < 10) {
         numQuestions += 1;
@@ -95,6 +105,7 @@ function generateQuestion() {
                 questionText.innerHTML = `What is ${num1} x ${num2}?`;
                 ans = num1 * num2;
             }
+            startQuestionTimer(8000);
         } else {
             // if difficulty hard, addition, subtraction, or multiplication
             let randVal = Math.random();
@@ -108,6 +119,8 @@ function generateQuestion() {
                 questionText.innerHTML = `What is ${num1} - ${num2}?`;
                 ans = num1 - num2;
             }
+
+            startQuestionTimer(4000); 
         }
 
     } else {
