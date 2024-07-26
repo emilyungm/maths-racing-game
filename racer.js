@@ -9,6 +9,8 @@ let ans;
 let distance;
 let numQuestions;
 let numCorrect;
+let difficultySelect;
+let difficultyMode = "easy";    // default difficulty mode
 
 window.onload = function() {
     stats = document.getElementById("gameStats");
@@ -30,6 +32,10 @@ window.onload = function() {
         window.location.reload();
     });
 
+    difficultySelect = document.getElementById("difficulty");
+    difficultySelect.addEventListener("change", function() {
+        difficultyMode = difficultySelect.value;
+    });
     setGame();
 }
 
@@ -74,15 +80,36 @@ function generateQuestion() {
         let num1 = Math.floor(Math.random()*12 + 1);
         let num2 = Math.floor(Math.random()*12 + 1);
         
-        
-        if (Math.random()<0.5) {
+        if (difficultyMode === "easy") {
+            // addition only (nums 1-10)
+            num1 = Math.floor(Math.random()*10 + 1);
+            num2 = Math.floor(Math.random()*10 + 1);
             questionText.innerHTML = `What is ${num1} + ${num2}?`;
             ans = num1 + num2;
-
+        } else if (difficultyMode === "medium") {
+            // addition or multiplication
+            if (Math.random()<0.5) {
+                questionText.innerHTML = `What is ${num1} + ${num2}?`;
+                ans = num1 + num2;
+            } else {
+                questionText.innerHTML = `What is ${num1} x ${num2}?`;
+                ans = num1 * num2;
+            }
         } else {
-            questionText.innerHTML = `What is ${num1} x ${num2}?`;
-            ans = num1 * num2;
+            // if difficulty hard, addition, subtraction, or multiplication
+            let randVal = Math.random();
+            if (randVal < 0.33) {
+                questionText.innerHTML = `What is ${num1} + ${num2}?`;
+                ans = num1 + num2;
+            } else if (randVal < 0.66) {
+                questionText.innerHTML = `What is ${num1} x ${num2}?`;
+                ans = num1 * num2;
+            } else {
+                questionText.innerHTML = `What is ${num1} - ${num2}?`;
+                ans = num1 - num2;
+            }
         }
+
     } else {
         endGame();
     }
@@ -97,9 +124,13 @@ function checkAnswer(input) {
         currentTile.appendChild(racer);
         numCorrect += 1;
     } else {
-        // incorrect answer, move backwards
+        // incorrect answer, move backwards (if not in easy mode)
         if (currentPos > 0) {
-            currentPos -= 1;
+            if (difficultyMode === "medium") {
+                currentPos = Math.max(0, currentPos - 1);
+            } else if (difficultyMode === "hard") {
+                currentPos = Math.max(0, currentPos - 3);
+            }
             currentTile.innerHTML = "";
             currentTile = document.getElementById(currentPos.toString());
             currentTile.appendChild(racer);
